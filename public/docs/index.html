@@ -1,0 +1,4133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SocialNetwork Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://127.0.0.1:8000";
+        var useCsrf = Boolean(1);
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.40.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.40.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
+                                <a href="#endpoints-GETapi-user">Dohvaća podatke o trenutno ulogiranom korisniku.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups">
+                                <a href="#endpoints-POSTapi-groups">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--id_string-">
+                                <a href="#endpoints-POSTapi-groups--id_string-">Update the specified resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-groups--id_string-">
+                                <a href="#endpoints-DELETEapi-groups--id_string-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--group_id_string--membership">
+                                <a href="#endpoints-POSTapi-groups--group_id_string--membership">POST api/groups/{group_id_string}/membership</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-groups-search">
+                                <a href="#endpoints-GETapi-groups-search">GET api/groups/search</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--group_id_string--posts">
+                                <a href="#endpoints-POSTapi-groups--group_id_string--posts">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-groups--group_id_string--posts--id-">
+                                <a href="#endpoints-DELETEapi-groups--group_id_string--posts--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--group_id_string--posts--post_id--comments">
+                                <a href="#endpoints-POSTapi-groups--group_id_string--posts--post_id--comments">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">
+                                <a href="#endpoints-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-posts--post_id--likes">
+                                <a href="#endpoints-GETapi-posts--post_id--likes">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-posts--post_id--likes">
+                                <a href="#endpoints-POSTapi-posts--post_id--likes">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-comments--comment_id--likes">
+                                <a href="#endpoints-GETapi-comments--comment_id--likes">GET api/comments/{comment_id}/likes</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-comments--comment_id--likes">
+                                <a href="#endpoints-POSTapi-comments--comment_id--likes">POST api/comments/{comment_id}/likes</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-notifications">
+                                <a href="#endpoints-GETapi-notifications">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-notifications">
+                                <a href="#endpoints-DELETEapi-notifications">DELETE api/notifications</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-notifications-count">
+                                <a href="#endpoints-GETapi-notifications-count">GET api/notifications/count</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-notifications-count">
+                                <a href="#endpoints-POSTapi-notifications-count">POST api/notifications/count</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-notifications--notification_id-">
+                                <a href="#endpoints-DELETEapi-notifications--notification_id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-dashboard-yourGroups">
+                                <a href="#endpoints-GETapi-dashboard-yourGroups">GET api/dashboard/yourGroups</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-dashboard-joinedGroups">
+                                <a href="#endpoints-GETapi-dashboard-joinedGroups">GET api/dashboard/joinedGroups</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-dashboard-posts">
+                                <a href="#endpoints-GETapi-dashboard-posts">GET api/dashboard/posts</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-dashboard-invitations">
+                                <a href="#endpoints-GETapi-dashboard-invitations">GET api/dashboard/invitations</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-groups--group_id_string--invitations">
+                                <a href="#endpoints-GETapi-groups--group_id_string--invitations">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--group_id_string--invitations">
+                                <a href="#endpoints-POSTapi-groups--group_id_string--invitations">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-groups--group_id_string--invitations--id-">
+                                <a href="#endpoints-DELETEapi-groups--group_id_string--invitations--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-groups--group_id_string--invitations--invitation_id-">
+                                <a href="#endpoints-POSTapi-groups--group_id_string--invitations--invitation_id-">POST api/groups/{group_id_string}/invitations/{invitation_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-settings">
+                                <a href="#endpoints-POSTapi-settings">Update the specified resource in storage.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: June 26, 2025</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>http://127.0.0.1:8000</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This endpoint requires authentication. Click the &quot;Authenticate&quot; button to log in, then send the request.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>Ova API koristi cookie autentifikaciju. Kliknite &quot;Authenticate&quot; da se prijavite.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-user">Dohvaća podatke o trenutno ulogiranom korisniku.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-user"
+                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-user"
+                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-user"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-groups">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups" data-method="POST"
+      data-path="api/groups"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups"
+                    onclick="tryItOut('POSTapi-groups');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups"
+                    onclick="cancelTryOut('POSTapi-groups');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-groups--id_string-">Update the specified resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--id_string-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--id_string-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--id_string-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--id_string-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--id_string-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--id_string-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--id_string-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--id_string-" data-method="POST"
+      data-path="api/groups/{id_string}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--id_string-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--id_string-"
+                    onclick="tryItOut('POSTapi-groups--id_string-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--id_string-"
+                    onclick="cancelTryOut('POSTapi-groups--id_string-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--id_string-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{id_string}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--id_string-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--id_string-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id_string"                data-endpoint="POSTapi-groups--id_string-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-groups--id_string-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-groups--id_string-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/groups/3wuPF" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-groups--id_string-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-groups--id_string-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-groups--id_string-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-groups--id_string-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-groups--id_string-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-groups--id_string-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-groups--id_string-" data-method="DELETE"
+      data-path="api/groups/{id_string}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-groups--id_string-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-groups--id_string-"
+                    onclick="tryItOut('DELETEapi-groups--id_string-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-groups--id_string-"
+                    onclick="cancelTryOut('DELETEapi-groups--id_string-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-groups--id_string-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/groups/{id_string}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-groups--id_string-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-groups--id_string-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id_string"                data-endpoint="DELETEapi-groups--id_string-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-groups--group_id_string--membership">POST api/groups/{group_id_string}/membership</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--group_id_string--membership">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF/membership" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/membership"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--group_id_string--membership">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--group_id_string--membership" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--group_id_string--membership"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--group_id_string--membership"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--group_id_string--membership" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--group_id_string--membership">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--group_id_string--membership" data-method="POST"
+      data-path="api/groups/{group_id_string}/membership"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--group_id_string--membership', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--group_id_string--membership"
+                    onclick="tryItOut('POSTapi-groups--group_id_string--membership');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--group_id_string--membership"
+                    onclick="cancelTryOut('POSTapi-groups--group_id_string--membership');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--group_id_string--membership"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{group_id_string}/membership</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--group_id_string--membership"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--group_id_string--membership"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="POSTapi-groups--group_id_string--membership"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-groups-search">GET api/groups/search</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-groups-search">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/groups/search" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"query\": \"fchpyncgvuus\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/search"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "query": "fchpyncgvuus"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-groups-search">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-groups-search" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-groups-search"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-groups-search"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-groups-search" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-groups-search">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-groups-search" data-method="GET"
+      data-path="api/groups/search"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-groups-search', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-groups-search"
+                    onclick="tryItOut('GETapi-groups-search');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-groups-search"
+                    onclick="cancelTryOut('GETapi-groups-search');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-groups-search"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+            <p>
+            <small class="badge badge-grey">OPTIONS</small>
+            <b><code>api/groups/search</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-groups-search"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-groups-search"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>query</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="query"                data-endpoint="GETapi-groups-search"
+               value="fchpyncgvuus"
+               data-component="body">
+    <br>
+<p>Must not be greater than 30 characters. Example: <code>fchpyncgvuus</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-groups--group_id_string--posts">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--group_id_string--posts">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "picture=@C:\Users\Bsk\AppData\Local\Temp\phpB4E2.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('picture', document.querySelector('input[name="picture"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--group_id_string--posts">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--group_id_string--posts" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--group_id_string--posts"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--group_id_string--posts"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--group_id_string--posts" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--group_id_string--posts">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--group_id_string--posts" data-method="POST"
+      data-path="api/groups/{group_id_string}/posts"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--group_id_string--posts', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--group_id_string--posts"
+                    onclick="tryItOut('POSTapi-groups--group_id_string--posts');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--group_id_string--posts"
+                    onclick="cancelTryOut('POSTapi-groups--group_id_string--posts');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--group_id_string--posts"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{group_id_string}/posts</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--group_id_string--posts"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--group_id_string--posts"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="POSTapi-groups--group_id_string--posts"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>content</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="content"                data-endpoint="POSTapi-groups--group_id_string--posts"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>picture</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="picture"                data-endpoint="POSTapi-groups--group_id_string--posts"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be an image. Example: <code>C:\Users\Bsk\AppData\Local\Temp\phpB4E2.tmp</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-groups--group_id_string--posts--id-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-groups--group_id_string--posts--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-groups--group_id_string--posts--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-groups--group_id_string--posts--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-groups--group_id_string--posts--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-groups--group_id_string--posts--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-groups--group_id_string--posts--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-groups--group_id_string--posts--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-groups--group_id_string--posts--id-" data-method="DELETE"
+      data-path="api/groups/{group_id_string}/posts/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-groups--group_id_string--posts--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-groups--group_id_string--posts--id-"
+                    onclick="tryItOut('DELETEapi-groups--group_id_string--posts--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-groups--group_id_string--posts--id-"
+                    onclick="cancelTryOut('DELETEapi-groups--group_id_string--posts--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-groups--group_id_string--posts--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/groups/{group_id_string}/posts/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-groups--group_id_string--posts--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-groups--group_id_string--posts--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="DELETEapi-groups--group_id_string--posts--id-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-groups--group_id_string--posts--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the post. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-groups--group_id_string--posts--post_id--comments">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--group_id_string--posts--post_id--comments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1/comments" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "picture=@C:\Users\Bsk\AppData\Local\Temp\phpB503.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1/comments"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('picture', document.querySelector('input[name="picture"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--group_id_string--posts--post_id--comments">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--group_id_string--posts--post_id--comments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--group_id_string--posts--post_id--comments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--group_id_string--posts--post_id--comments"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--group_id_string--posts--post_id--comments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--group_id_string--posts--post_id--comments">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--group_id_string--posts--post_id--comments" data-method="POST"
+      data-path="api/groups/{group_id_string}/posts/{post_id}/comments"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--group_id_string--posts--post_id--comments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--group_id_string--posts--post_id--comments"
+                    onclick="tryItOut('POSTapi-groups--group_id_string--posts--post_id--comments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--group_id_string--posts--post_id--comments"
+                    onclick="cancelTryOut('POSTapi-groups--group_id_string--posts--post_id--comments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--group_id_string--posts--post_id--comments"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{group_id_string}/posts/{post_id}/comments</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>post_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="post_id"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the post. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>content</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="content"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>picture</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="picture"                data-endpoint="POSTapi-groups--group_id_string--posts--post_id--comments"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be an image. Example: <code>C:\Users\Bsk\AppData\Local\Temp\phpB503.tmp</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1/comments/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/posts/1/comments/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-groups--group_id_string--posts--post_id--comments--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-groups--group_id_string--posts--post_id--comments--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-groups--group_id_string--posts--post_id--comments--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-groups--group_id_string--posts--post_id--comments--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-groups--group_id_string--posts--post_id--comments--id-" data-method="DELETE"
+      data-path="api/groups/{group_id_string}/posts/{post_id}/comments/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-groups--group_id_string--posts--post_id--comments--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+                    onclick="tryItOut('DELETEapi-groups--group_id_string--posts--post_id--comments--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+                    onclick="cancelTryOut('DELETEapi-groups--group_id_string--posts--post_id--comments--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/groups/{group_id_string}/posts/{post_id}/comments/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>post_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="post_id"                data-endpoint="DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the post. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-groups--group_id_string--posts--post_id--comments--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the comment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-posts--post_id--likes">Display a listing of the resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-posts--post_id--likes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/posts/1/likes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/posts/1/likes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-posts--post_id--likes">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-posts--post_id--likes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-posts--post_id--likes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-posts--post_id--likes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-posts--post_id--likes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-posts--post_id--likes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-posts--post_id--likes" data-method="GET"
+      data-path="api/posts/{post_id}/likes"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-posts--post_id--likes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-posts--post_id--likes"
+                    onclick="tryItOut('GETapi-posts--post_id--likes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-posts--post_id--likes"
+                    onclick="cancelTryOut('GETapi-posts--post_id--likes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-posts--post_id--likes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/posts/{post_id}/likes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-posts--post_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-posts--post_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>post_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="post_id"                data-endpoint="GETapi-posts--post_id--likes"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the post. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-posts--post_id--likes">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-posts--post_id--likes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/posts/1/likes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/posts/1/likes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-posts--post_id--likes">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-posts--post_id--likes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-posts--post_id--likes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-posts--post_id--likes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-posts--post_id--likes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-posts--post_id--likes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-posts--post_id--likes" data-method="POST"
+      data-path="api/posts/{post_id}/likes"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-posts--post_id--likes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-posts--post_id--likes"
+                    onclick="tryItOut('POSTapi-posts--post_id--likes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-posts--post_id--likes"
+                    onclick="cancelTryOut('POSTapi-posts--post_id--likes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-posts--post_id--likes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/posts/{post_id}/likes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-posts--post_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-posts--post_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>post_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="post_id"                data-endpoint="POSTapi-posts--post_id--likes"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the post. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-comments--comment_id--likes">GET api/comments/{comment_id}/likes</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-comments--comment_id--likes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/comments/1/likes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/comments/1/likes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-comments--comment_id--likes">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-comments--comment_id--likes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-comments--comment_id--likes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-comments--comment_id--likes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-comments--comment_id--likes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-comments--comment_id--likes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-comments--comment_id--likes" data-method="GET"
+      data-path="api/comments/{comment_id}/likes"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-comments--comment_id--likes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-comments--comment_id--likes"
+                    onclick="tryItOut('GETapi-comments--comment_id--likes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-comments--comment_id--likes"
+                    onclick="cancelTryOut('GETapi-comments--comment_id--likes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-comments--comment_id--likes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/comments/{comment_id}/likes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-comments--comment_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-comments--comment_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>comment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="comment_id"                data-endpoint="GETapi-comments--comment_id--likes"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the comment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-comments--comment_id--likes">POST api/comments/{comment_id}/likes</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-comments--comment_id--likes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/comments/1/likes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/comments/1/likes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-comments--comment_id--likes">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-comments--comment_id--likes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-comments--comment_id--likes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-comments--comment_id--likes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-comments--comment_id--likes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-comments--comment_id--likes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-comments--comment_id--likes" data-method="POST"
+      data-path="api/comments/{comment_id}/likes"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-comments--comment_id--likes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-comments--comment_id--likes"
+                    onclick="tryItOut('POSTapi-comments--comment_id--likes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-comments--comment_id--likes"
+                    onclick="cancelTryOut('POSTapi-comments--comment_id--likes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-comments--comment_id--likes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/comments/{comment_id}/likes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-comments--comment_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-comments--comment_id--likes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>comment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="comment_id"                data-endpoint="POSTapi-comments--comment_id--likes"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the comment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-notifications">Display a listing of the resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-notifications">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/notifications" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notifications"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-notifications">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-notifications" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-notifications"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-notifications"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-notifications" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-notifications">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-notifications" data-method="GET"
+      data-path="api/notifications"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-notifications', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-notifications"
+                    onclick="tryItOut('GETapi-notifications');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-notifications"
+                    onclick="cancelTryOut('GETapi-notifications');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-notifications"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/notifications</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-notifications"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-notifications"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-DELETEapi-notifications">DELETE api/notifications</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-notifications">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/notifications" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notifications"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-notifications">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-notifications" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-notifications"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-notifications"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-notifications" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-notifications">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-notifications" data-method="DELETE"
+      data-path="api/notifications"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-notifications', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-notifications"
+                    onclick="tryItOut('DELETEapi-notifications');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-notifications"
+                    onclick="cancelTryOut('DELETEapi-notifications');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-notifications"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/notifications</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-notifications"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-notifications"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-notifications-count">GET api/notifications/count</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-notifications-count">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/notifications/count" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notifications/count"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-notifications-count">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-notifications-count" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-notifications-count"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-notifications-count"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-notifications-count" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-notifications-count">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-notifications-count" data-method="GET"
+      data-path="api/notifications/count"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-notifications-count', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-notifications-count"
+                    onclick="tryItOut('GETapi-notifications-count');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-notifications-count"
+                    onclick="cancelTryOut('GETapi-notifications-count');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-notifications-count"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/notifications/count</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-notifications-count"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-notifications-count"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-notifications-count">POST api/notifications/count</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-notifications-count">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/notifications/count" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notifications/count"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-notifications-count">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-notifications-count" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-notifications-count"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-notifications-count"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-notifications-count" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-notifications-count">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-notifications-count" data-method="POST"
+      data-path="api/notifications/count"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-notifications-count', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-notifications-count"
+                    onclick="tryItOut('POSTapi-notifications-count');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-notifications-count"
+                    onclick="cancelTryOut('POSTapi-notifications-count');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-notifications-count"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/notifications/count</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-notifications-count"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-notifications-count"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-DELETEapi-notifications--notification_id-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-notifications--notification_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/notifications/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notifications/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-notifications--notification_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-notifications--notification_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-notifications--notification_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-notifications--notification_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-notifications--notification_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-notifications--notification_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-notifications--notification_id-" data-method="DELETE"
+      data-path="api/notifications/{notification_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-notifications--notification_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-notifications--notification_id-"
+                    onclick="tryItOut('DELETEapi-notifications--notification_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-notifications--notification_id-"
+                    onclick="cancelTryOut('DELETEapi-notifications--notification_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-notifications--notification_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/notifications/{notification_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-notifications--notification_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-notifications--notification_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>notification_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="notification_id"                data-endpoint="DELETEapi-notifications--notification_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the notification. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-dashboard-yourGroups">GET api/dashboard/yourGroups</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-dashboard-yourGroups">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/dashboard/yourGroups" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dashboard/yourGroups"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-dashboard-yourGroups">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-dashboard-yourGroups" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-dashboard-yourGroups"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-dashboard-yourGroups"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-dashboard-yourGroups" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-dashboard-yourGroups">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-dashboard-yourGroups" data-method="GET"
+      data-path="api/dashboard/yourGroups"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-dashboard-yourGroups', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-dashboard-yourGroups"
+                    onclick="tryItOut('GETapi-dashboard-yourGroups');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-dashboard-yourGroups"
+                    onclick="cancelTryOut('GETapi-dashboard-yourGroups');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-dashboard-yourGroups"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/dashboard/yourGroups</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-dashboard-yourGroups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-dashboard-yourGroups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-dashboard-joinedGroups">GET api/dashboard/joinedGroups</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-dashboard-joinedGroups">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/dashboard/joinedGroups" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dashboard/joinedGroups"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-dashboard-joinedGroups">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-dashboard-joinedGroups" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-dashboard-joinedGroups"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-dashboard-joinedGroups"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-dashboard-joinedGroups" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-dashboard-joinedGroups">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-dashboard-joinedGroups" data-method="GET"
+      data-path="api/dashboard/joinedGroups"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-dashboard-joinedGroups', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-dashboard-joinedGroups"
+                    onclick="tryItOut('GETapi-dashboard-joinedGroups');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-dashboard-joinedGroups"
+                    onclick="cancelTryOut('GETapi-dashboard-joinedGroups');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-dashboard-joinedGroups"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/dashboard/joinedGroups</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-dashboard-joinedGroups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-dashboard-joinedGroups"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-dashboard-posts">GET api/dashboard/posts</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-dashboard-posts">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/dashboard/posts" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dashboard/posts"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-dashboard-posts">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-dashboard-posts" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-dashboard-posts"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-dashboard-posts"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-dashboard-posts" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-dashboard-posts">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-dashboard-posts" data-method="GET"
+      data-path="api/dashboard/posts"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-dashboard-posts', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-dashboard-posts"
+                    onclick="tryItOut('GETapi-dashboard-posts');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-dashboard-posts"
+                    onclick="cancelTryOut('GETapi-dashboard-posts');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-dashboard-posts"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/dashboard/posts</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-dashboard-posts"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-dashboard-posts"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-dashboard-invitations">GET api/dashboard/invitations</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-dashboard-invitations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/dashboard/invitations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dashboard/invitations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-dashboard-invitations">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-dashboard-invitations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-dashboard-invitations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-dashboard-invitations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-dashboard-invitations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-dashboard-invitations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-dashboard-invitations" data-method="GET"
+      data-path="api/dashboard/invitations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-dashboard-invitations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-dashboard-invitations"
+                    onclick="tryItOut('GETapi-dashboard-invitations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-dashboard-invitations"
+                    onclick="cancelTryOut('GETapi-dashboard-invitations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-dashboard-invitations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/dashboard/invitations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-dashboard-invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-dashboard-invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-groups--group_id_string--invitations">Display a listing of the resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-groups--group_id_string--invitations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/groups/3wuPF/invitations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-groups--group_id_string--invitations">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-groups--group_id_string--invitations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-groups--group_id_string--invitations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-groups--group_id_string--invitations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-groups--group_id_string--invitations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-groups--group_id_string--invitations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-groups--group_id_string--invitations" data-method="GET"
+      data-path="api/groups/{group_id_string}/invitations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-groups--group_id_string--invitations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-groups--group_id_string--invitations"
+                    onclick="tryItOut('GETapi-groups--group_id_string--invitations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-groups--group_id_string--invitations"
+                    onclick="cancelTryOut('GETapi-groups--group_id_string--invitations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-groups--group_id_string--invitations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/groups/{group_id_string}/invitations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-groups--group_id_string--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-groups--group_id_string--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="GETapi-groups--group_id_string--invitations"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-groups--group_id_string--invitations">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--group_id_string--invitations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"username\": \"sjfbnwv\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "username": "sjfbnwv"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--group_id_string--invitations">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--group_id_string--invitations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--group_id_string--invitations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--group_id_string--invitations"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--group_id_string--invitations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--group_id_string--invitations">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--group_id_string--invitations" data-method="POST"
+      data-path="api/groups/{group_id_string}/invitations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--group_id_string--invitations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--group_id_string--invitations"
+                    onclick="tryItOut('POSTapi-groups--group_id_string--invitations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--group_id_string--invitations"
+                    onclick="cancelTryOut('POSTapi-groups--group_id_string--invitations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--group_id_string--invitations"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{group_id_string}/invitations</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--group_id_string--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--group_id_string--invitations"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="POSTapi-groups--group_id_string--invitations"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="username"                data-endpoint="POSTapi-groups--group_id_string--invitations"
+               value="sjfbnwv"
+               data-component="body">
+    <br>
+<p>Must be at least 4 characters. Must not be greater than 20 characters. Example: <code>sjfbnwv</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-groups--group_id_string--invitations--id-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-groups--group_id_string--invitations--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations/10" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations/10"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-groups--group_id_string--invitations--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-groups--group_id_string--invitations--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-groups--group_id_string--invitations--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-groups--group_id_string--invitations--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-groups--group_id_string--invitations--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-groups--group_id_string--invitations--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-groups--group_id_string--invitations--id-" data-method="DELETE"
+      data-path="api/groups/{group_id_string}/invitations/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-groups--group_id_string--invitations--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-groups--group_id_string--invitations--id-"
+                    onclick="tryItOut('DELETEapi-groups--group_id_string--invitations--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-groups--group_id_string--invitations--id-"
+                    onclick="cancelTryOut('DELETEapi-groups--group_id_string--invitations--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-groups--group_id_string--invitations--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/groups/{group_id_string}/invitations/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-groups--group_id_string--invitations--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-groups--group_id_string--invitations--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="DELETEapi-groups--group_id_string--invitations--id-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-groups--group_id_string--invitations--id-"
+               value="10"
+               data-component="url">
+    <br>
+<p>The ID of the invitation. Example: <code>10</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-groups--group_id_string--invitations--invitation_id-">POST api/groups/{group_id_string}/invitations/{invitation_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-groups--group_id_string--invitations--invitation_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations/13" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/groups/3wuPF/invitations/13"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-groups--group_id_string--invitations--invitation_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-groups--group_id_string--invitations--invitation_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-groups--group_id_string--invitations--invitation_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-groups--group_id_string--invitations--invitation_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-groups--group_id_string--invitations--invitation_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-groups--group_id_string--invitations--invitation_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-groups--group_id_string--invitations--invitation_id-" data-method="POST"
+      data-path="api/groups/{group_id_string}/invitations/{invitation_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-groups--group_id_string--invitations--invitation_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-groups--group_id_string--invitations--invitation_id-"
+                    onclick="tryItOut('POSTapi-groups--group_id_string--invitations--invitation_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-groups--group_id_string--invitations--invitation_id-"
+                    onclick="cancelTryOut('POSTapi-groups--group_id_string--invitations--invitation_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-groups--group_id_string--invitations--invitation_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/groups/{group_id_string}/invitations/{invitation_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-groups--group_id_string--invitations--invitation_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-groups--group_id_string--invitations--invitation_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>group_id_string</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="group_id_string"                data-endpoint="POSTapi-groups--group_id_string--invitations--invitation_id-"
+               value="3wuPF"
+               data-component="url">
+    <br>
+<p>Example: <code>3wuPF</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>invitation_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="invitation_id"                data-endpoint="POSTapi-groups--group_id_string--invitations--invitation_id-"
+               value="13"
+               data-component="url">
+    <br>
+<p>The ID of the invitation. Example: <code>13</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-settings">Update the specified resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-settings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/settings" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "username=lmsmrgvufmljqpfglkao"\
+    --form "profile_picture=@C:\Users\Bsk\AppData\Local\Temp\phpB571.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/settings"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('username', 'lmsmrgvufmljqpfglkao');
+body.append('profile_picture', document.querySelector('input[name="profile_picture"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-settings">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-settings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-settings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-settings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-settings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-settings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-settings" data-method="POST"
+      data-path="api/settings"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-settings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-settings"
+                    onclick="tryItOut('POSTapi-settings');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-settings"
+                    onclick="cancelTryOut('POSTapi-settings');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-settings"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/settings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-settings"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="username"                data-endpoint="POSTapi-settings"
+               value="lmsmrgvufmljqpfglkao"
+               data-component="body">
+    <br>
+<p>Must contain only letters, numbers, dashes and underscores. Must not be greater than 20 characters. Example: <code>lmsmrgvufmljqpfglkao</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-settings"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>profile_picture</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="profile_picture"                data-endpoint="POSTapi-settings"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be an image. Example: <code>C:\Users\Bsk\AppData\Local\Temp\phpB571.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>remove_profile_picture</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="remove_profile_picture"                data-endpoint="POSTapi-settings"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1503 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1:8000"
+        }
+    ],
+    "info": {
+        "name": "SocialNetwork",
+        "_postman_id": "284b159a-7b0c-49fb-9d95-77da02756958",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Dohva\u0107a podatke o trenutno ulogiranom korisniku.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:id_string",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:id_string",
+                            "variable": [
+                                {
+                                    "id": "id_string",
+                                    "key": "id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:id_string",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:id_string",
+                            "variable": [
+                                {
+                                    "id": "id_string",
+                                    "key": "id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/groups\/{group_id_string}\/membership",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/membership",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/membership",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/groups\/search",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/search",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/search"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"query\":\"fchpyncgvuus\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/posts",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "picture",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/posts\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/posts\/:id",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/posts\/:post_id\/comments",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/posts\/:post_id\/comments",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "post_id",
+                                    "key": "post_id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "picture",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/posts\/:post_id\/comments\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/posts\/:post_id\/comments\/:id",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "post_id",
+                                    "key": "post_id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the comment."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts\/:post_id\/likes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts\/:post_id\/likes",
+                            "variable": [
+                                {
+                                    "id": "post_id",
+                                    "key": "post_id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts\/:post_id\/likes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts\/:post_id\/likes",
+                            "variable": [
+                                {
+                                    "id": "post_id",
+                                    "key": "post_id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/comments\/{comment_id}\/likes",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/comments\/:comment_id\/likes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/comments\/:comment_id\/likes",
+                            "variable": [
+                                {
+                                    "id": "comment_id",
+                                    "key": "comment_id",
+                                    "value": "1",
+                                    "description": "The ID of the comment."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/comments\/{comment_id}\/likes",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/comments\/:comment_id\/likes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/comments\/:comment_id\/likes",
+                            "variable": [
+                                {
+                                    "id": "comment_id",
+                                    "key": "comment_id",
+                                    "value": "1",
+                                    "description": "The ID of the comment."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notifications",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notifications"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE api\/notifications",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notifications",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notifications"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/notifications\/count",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notifications\/count",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notifications\/count"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/notifications\/count",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notifications\/count",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notifications\/count"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notifications\/:notification_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notifications\/:notification_id",
+                            "variable": [
+                                {
+                                    "id": "notification_id",
+                                    "key": "notification_id",
+                                    "value": "1",
+                                    "description": "The ID of the notification."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/dashboard\/yourGroups",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/dashboard\/yourGroups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/dashboard\/yourGroups"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/dashboard\/joinedGroups",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/dashboard\/joinedGroups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/dashboard\/joinedGroups"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/dashboard\/posts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/dashboard\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/dashboard\/posts"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/dashboard\/invitations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/dashboard\/invitations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/dashboard\/invitations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/invitations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/invitations",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/invitations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/invitations",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\":\"sjfbnwv\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/invitations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/invitations\/:id",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "10",
+                                    "description": "The ID of the invitation."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/groups\/{group_id_string}\/invitations\/{invitation_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/groups\/:group_id_string\/invitations\/:invitation_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/groups\/:group_id_string\/invitations\/:invitation_id",
+                            "variable": [
+                                {
+                                    "id": "group_id_string",
+                                    "key": "group_id_string",
+                                    "value": "3wuPF",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "invitation_id",
+                                    "key": "invitation_id",
+                                    "value": "13",
+                                    "description": "The ID of the invitation."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/settings",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/settings"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "username",
+                                    "value": "lmsmrgvufmljqpfglkao",
+                                    "type": "text",
+                                    "description": "Must contain only letters, numbers, dashes and underscores. Must not be greater than 20 characters."
+                                },
+                                {
+                                    "key": "profile_picture",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "in",
+                "value": "cookie",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "XSRF-TOKEN",
+                "type": "string"
+            }
+        ]
+    }
+}
