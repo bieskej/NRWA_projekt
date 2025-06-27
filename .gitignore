@@ -14,3 +14,8 @@ database.db
 
 /public/js
 /public/css
+/vendor
+/node_modules
+.env
+/public/storage
+/storage/*.key
